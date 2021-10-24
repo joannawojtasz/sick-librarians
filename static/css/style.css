@@ -1,0 +1,34 @@
+body {
+    background: url(https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635091776/books.jpg) no-repeat center center;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+#text-h1 {
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+  font-size: 4rem;
+}
+
+.checked {
+    color: orange;
+  }
+
+  .bg-grey {
+    background-color: rgba(23,60,55, 0.9);
+}
+
+  h1 {
+      color: #da8a66;
+      opacity: 100;
+
+  }
+
+  .txt-red {
+      color: #b5545d;
+
+  }
+
+  .text-baige {
+      color: #d4cabf;
+  }

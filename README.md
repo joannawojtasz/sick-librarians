@@ -26,7 +26,7 @@ Sick librarians are a web application that aim att connecting librarians and boo
 
 9. As a Site Admin I can create draft posts so that I can finish writing the content later
 
-10. As a Site Admin I can create draft posts so that I can finish writing the content later
+10. As a Site Admin I can disapprove comments so that I can moderate the discussion
 
 ### Wireframe:
 
@@ -34,9 +34,7 @@ Sick librarians are a web application that aim att connecting librarians and boo
 
 [start page wireframe](url)
 
-* Review/news detail view
 
-[detail view](url)
 
 * User registration form
 
@@ -45,4 +43,29 @@ Sick librarians are a web application that aim att connecting librarians and boo
 * User login form
 
 [login form](url)
+
+
+## Testing
+
+### Testing against user stories
+
+- [ ] As a Site User I can view a list of news and reviews so that I can select one to read
+
+- [ ] As a Site User I can preview news/post so that read the full text
+
+- [ ] As a Site User I can view book rating within each review so that see which is most worth reading
+
+- [ ] As a Site User I can view comments within discussion on an individual item so that I can read the conversation
+
+- [ ] As a Site User I can register an account so that I can comment and like
+
+- [ ] As a Site User I can can leave comments on so that can be involved in the conversation
+
+- [ ] As a Site User I can rate a post so that I can let others know what is my opinion
+
+- [x]As a Site Admin I can create, read, update and delete posts so that I can manage site content
+
+- [x] As a Site Admin I can create draft posts so that I can finish writing the content later
+
+- [x] As a Site Admin I can disapprove comments so that I can moderate the discussion
 
