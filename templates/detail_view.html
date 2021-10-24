@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class=" d-md-block col-6 masthead-image">
+            {% if "placeholder" in post.featured_image.url %}
+            <img src="https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635109651/book_placeholder.jpg"
+                class="card-img-top">
+            {% else %}
+            <img src="{{ post.features_image.url }}" class="card-img-top">
+            {% endif %}
+        </div>
+
+
+        <div class="col-6">
+
+            <div>
+                <div class="card mb-1 ">
+                    <section class="text-center text-white bg-grey">
+                        <h1 class="card-title txt-red"><strong>{{ post.title }}</strong></h1>
+                        <h6 class="card-subtitle mb-2 text-white">{{ post.subtitle }}</h6>
+                    </section>
+                    <a href="#" class="post_link"></a>
+                    <div class="card-body ">
+                        
+                        <p class="card-text"> {{ post.content }} </p>
+                        <p class="card-text"><small class="text-muted">Public rating: </small></p>
+                        <span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </span>
+                        <p class="card-text"><small class="text-muted">Created by: {{ post_author }} date:
+                                {{ post.created_on }}
+                            </small></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 card mb-4  mt-3 ">
+        <h3>Comments:</h3>
+        <div class="card-body">
+            {% for comment in comments %}
+            <div class="comments" style="padding: 10px;">
+                <p class="font-weight-bold">
+                    {{ comment.name }}
+                    <span class=" text-muted font-weight-normal">
+                        {{ comment.created_on }}
+                    </span> wrote:
+                </p>
+                {{ comment.body | linebreaks }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-4 card mb-4  mt-3 ">
+    </div>
+</div>
+
+</div>
+
+{% endblock content %}

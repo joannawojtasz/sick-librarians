@@ -49,13 +49,13 @@ Sick librarians are a web application that aim att connecting librarians and boo
 
 ### Testing against user stories
 
-- [ ] As a Site User I can view a list of news and reviews so that I can select one to read
+- [x] As a Site User I can view a list of news and reviews so that I can select one to read
 
-- [ ] As a Site User I can preview news/post so that read the full text
+- [x] As a Site User I can preview news/post so that read the full text
 
 - [ ] As a Site User I can view book rating within each review so that see which is most worth reading
 
-- [ ] As a Site User I can view comments within discussion on an individual item so that I can read the conversation
+- [x] As a Site User I can view comments within discussion on an individual item so that I can read the conversation
 
 - [ ] As a Site User I can register an account so that I can comment and like
 
