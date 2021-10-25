@@ -14,7 +14,7 @@ class DetailView(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("-created_on")
+        comments = post.comments.filter(approved=True, reply__isnull=True).order_by("created_on")
 
         return render(
             request,
@@ -23,7 +23,7 @@ class DetailView(View):
                 "post": post,
                 "comments": comments,
                 "commented": False,
-                "comment_form": CommentForm()
+                # "comment_form": CommentForm()
             },
         )
     

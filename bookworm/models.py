@@ -26,18 +26,19 @@ class Post(models.Model):
         return self.title
 
 
-
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
-    name = models.ForeignKey(User, on_delete=models.SET_NULL,
-    blank=True, null=True, related_name="user_comments")
-    email = models.EmailField()
+    name = models.CharField(max_length=80)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
+    reply = models.ForeignKey('Comment', null=True, blank=True, related_name="repiles", on_delete=models.CASCADE)
     
     class Meta:
         ordering = ["created_on"]
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+    def replies(self):
+        return Comment.objects.filter(reply=self)

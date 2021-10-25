@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class=" d-md-block col-6 masthead-image">
             {% if "placeholder" in post.featured_image.url %}
@@ -24,7 +24,7 @@
                     </section>
                     <a href="#" class="post_link"></a>
                     <div class="card-body ">
-                        
+
                         <p class="card-text"> {{ post.content }} </p>
                         <p class="card-text"><small class="text-muted">Public rating: </small></p>
                         <span>
@@ -43,28 +43,58 @@
 
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-        <h3>Comments:</h3>
-        <div class="card-body">
-            {% for comment in comments %}
-            <div class="comments" style="padding: 10px;">
-                <p class="font-weight-bold">
-                    {{ comment.name }}
-                    <span class=" text-muted font-weight-normal">
-                        {{ comment.created_on }}
-                    </span> wrote:
-                </p>
-                {{ comment.body | linebreaks }}
+
+
+    <div class=" mt-2  row">
+        {% for comment in comments %}
+        <div bg-whitejustify-content-center>
+            <div class="card col-10 mt-2">
+                <div class="card-header">
+                <p> <strong class="txt-red">{{ comment.name }}</strong> <small class="text-muted">commented:</small> </p>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{ comment.body | linebreaks }}.</p>
+                        <footer class="blockquote-footer"> <small>{{ comment.created_on }}</small>
+                    </blockquote>
+                </div>
+                <div>
+                    {% if comment.replies.count != 0 %}
+                        {% if comment.replies.count == 1 %} 
+                            <p>1 reply:</p>
+                        {% else %}
+                            <p>{{ comment.replies.count }} replies:</p>
+                        {% endif %}
+                    {% endif %}
+    
+                </div>
             </div>
-            {% endfor %}
+            <div class="justify-content-end">
+                {% for reply in comment.replies %}
+                <div class="col-8 offset-1 mt-1">
+                    <div class="card card-body ">
+                        <div class="card-header">
+                            <p> <strong class="txt-red">{{ reply.name }}</strong> <small class="text-muted">replied:</small> </p>
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>{{ reply.body | linebreaks }}</p>
+                                <footer class="blockquote-footer"> <small>{{ reply.created_on }}</small>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
+        {% endfor %}
     </div>
-    <div class="col-md-4 card mb-4  mt-3 ">
-    </div>
-</div>
 
-</div>
+    <script>
+        var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+        var collapseList = collapseElementList.map(function (collapseEl) {
+            return new bootstrap.Collapse(collapseEl)
+        })
+    </script>
 
-{% endblock content %}
+    {% endblock content %}
