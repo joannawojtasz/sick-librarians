@@ -2,99 +2,110 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class=" d-md-block col-6 masthead-image">
-            {% if "placeholder" in post.featured_image.url %}
-            <img src="https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635109651/book_placeholder.jpg"
-                class="card-img-top">
-            {% else %}
-            <img src="{{ post.features_image.url }}" class="card-img-top">
-            {% endif %}
-        </div>
+<div class="row">
 
-
-        <div class="col-6">
-
-            <div>
-                <div class="card mb-1 ">
-                    <section class="text-center text-white bg-grey">
-                        <h1 class="card-title txt-red"><strong>{{ post.title }}</strong></h1>
-                        <h6 class="card-subtitle mb-2 text-white">{{ post.subtitle }}</h6>
-                    </section>
-                    <a href="#" class="post_link"></a>
-                    <div class="card-body ">
-
-                        <p class="card-text"> {{ post.content }} </p>
-                        <p class="card-text"><small class="text-muted">Public rating: </small></p>
-                        <span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </span>
-                        <p class="card-text"><small class="text-muted">Created by: {{ post_author }} date:
-                                {{ post.created_on }}
-                            </small></p>
-                    </div>
-                </div>
+    <div class="row mt-4">
+        <div class="p-2 m-1 row">
+            <div class="col-md-5 col-sm-12  ">
+                {% if "placeholder" in post.featured_image.url %}
+                <img src="https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635109651/book_placeholder.jpg"
+                    class="card-img-top">
+                {% else %}
+                <img src="{{ post.features_image.url }}" class="card-img-top">
+                {% endif %}
             </div>
 
-        </div>
-    </div>
+            <div class="col-md-7 col-sm-12 border p-1 bg-white">
+                <section class="text-center text-white bg-grey">
+                    <h1 class="card-title txt-white"><strong>{{ post.title }}</strong></h1>
+                    <h6 class="card-subtitle mb-2 text-white">{{ post.subtitle }}</h6>
+                </section>
 
-
-    <div class=" mt-2  row">
-        {% for comment in comments %}
-        <div bg-whitejustify-content-center>
-            <div class="card col-10 mt-2">
-                <div class="card-header">
-                <p> <strong class="txt-red">{{ comment.name }}</strong> <small class="text-muted">commented:</small> </p>
-                </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                        <p>{{ comment.body | linebreaks }}.</p>
-                        <footer class="blockquote-footer"> <small>{{ comment.created_on }}</small>
+                        <p>{{ post.content | linebreaks }}</p>
+
+                        <footer class="blockquote-footer">
+                            <p class="card-text"><small class="text-muted">Public rating: </small></p>
+                            <span class="m-n1 p-n1">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </span>
+                            <p class="card-text"><small class="text-muted">Created by: {{ post_author }} date:
+                                    {{ post.created_on }}
+                                </small></p>
                     </blockquote>
                 </div>
-                <div>
-                    {% if comment.replies.count != 0 %}
-                        {% if comment.replies.count == 1 %} 
-                            <p>1 reply:</p>
-                        {% else %}
-                            <p>{{ comment.replies.count }} replies:</p>
-                        {% endif %}
-                    {% endif %}
-    
-                </div>
-            </div>
-            <div class="justify-content-end">
-                {% for reply in comment.replies %}
-                <div class="col-8 offset-1 mt-1">
-                    <div class="card card-body ">
-                        <div class="card-header">
-                            <p> <strong class="txt-red">{{ reply.name }}</strong> <small class="text-muted">replied:</small> </p>
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                                <p>{{ reply.body | linebreaks }}</p>
-                                <footer class="blockquote-footer"> <small>{{ reply.created_on }}</small>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
             </div>
         </div>
-        {% endfor %}
     </div>
+</div>
 
-    <script>
-        var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
-        var collapseList = collapseElementList.map(function (collapseEl) {
-            return new bootstrap.Collapse(collapseEl)
-        })
-    </script>
 
-    {% endblock content %}
+
+<div class="row comment">
+    {% for comment in comments %}
+    <div class="col-md-8 col-12 mt-4 mx-auto">
+        <div class="bg-white">
+            <div class="card-header">
+                <p>
+                    <strong class="txt-red">{{ comment.name }}</strong> 
+                    <small class="text-muted">commented:</small>
+                </p>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote ">
+                    <p>{{ comment.body | linebreaks }}.</p>
+                    
+                    <footer class="blockquote-footer"> 
+                    <p><small>
+                        <span class="tetx-muted">{{ comment.created_on }}</span>
+                        <span>
+                            <strong >
+                {% if comment.replies.count != 0 %}
+                {% if comment.replies.count == 1 %}
+                1 reply:
+                {% else %}
+                {{ comment.replies.count }} replies:
+                {% endif %}
+                {% endif %}
+</strong>
+                        </span>
+
+            </small></p>
+            </blockquote>
+            </div>
+        </div>
+        <div >
+            {% for reply in comment.replies %}
+            <div class="col-8 col-md-10 offset-2 mt-1">
+                <div class="card card-body ">
+                    <div class="card-header">
+                        <p> <strong class="txt-red">{{ reply.name }}</strong> <small class="text-muted">replied:</small>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{ reply.body | linebreaks }}</p>
+                            <footer class="blockquote-footer"> <small>{{ reply.created_on }}</small>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+    var collapseList = collapseElementList.map(function (collapseEl) {
+        return new bootstrap.Collapse(collapseEl)
+    })
+</script>
+
+{% endblock content %}

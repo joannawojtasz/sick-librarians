@@ -5,12 +5,12 @@
 
 
 <!-- Callout -->
-<div class="opaque-overlay bg-grey p-4 mt-n1">&nbsp;
+<div class="opaque-overlay bg-grey p-4 mt-n1">
     <div class="row">
         <div class="col-12">
 
             <section class="text-center text-white">
-                <h1 class="jumbotron-header font-monospace" id="text-h1" >Sick librarians</h1>
+                <h1 class="font-monospace" id="text-h1" >Sick librarians</h1>
                 <hr class="block-divider block-divider--orange">
                 <strong>Get addicted to reading & discussion!</strong>
                 <p class="txt-baige"><small>Virtual book club for book worms stack at home due to covid-19
@@ -27,7 +27,7 @@
         {% for post in post_list%}
 
         <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
-            <div class="card mb-1 ">
+            <div class="card mb-1 post-card">
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635109651/book_placeholder.jpg" class="card-img-top">
                 {% else %}
@@ -35,10 +35,13 @@
                 {% endif %}
                 
                 <div class="card-body ">
+                    <div>
                     <a href="{% url 'detail_view' post.slug %}" class="post_link">
                     <h5 class="card-title txt-red">{{ post.title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ post.subtitle }}</h6>
                     <p class="card-text"> {{ post.excerpt}} </p>
+                    </div>
+                    <div>
                     <p class="card-text"><small class="text-muted">Public rating: </small></p>
                 </a>
                     <span>
@@ -51,6 +54,7 @@
                     <p class="card-text"><small class="text-muted">Created by: {{ post_author }} date: {{ post.created_on }}
                         </small></p>
                 </div>
+            </div>
             </div>
         </div>
 

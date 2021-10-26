@@ -1,13 +1,21 @@
 body {
-    background: url(https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635091776/books.jpg) no-repeat center center;
+    background: url(https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635091776/books.jpg) center center;
+    background-repeat: repeat-y;
     font-family: 'Roboto', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
 
 #text-h1 {
   font-weight: 900;
   font-family: 'Roboto', sans-serif;
   font-size: 4rem;
+}
+
+.border {
+  border-color: #3a3a3a;
 }
 
 .checked {
@@ -33,6 +41,19 @@ body {
       color: #d4cabf;
   }
 
+.comment * {
+    font-size: 1rem;
+  }
+
+  footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.post-card {
+  height: 600px;
+}
 
   /* Collapsible */
 

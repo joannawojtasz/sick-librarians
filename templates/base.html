@@ -5,6 +5,7 @@
 
 <head>
     <title>Sick librarians | Addicted to reading </title>
+    <link rel="icon" href="https://res.cloudinary.com/dt2jqh5yo/image/upload/v1635269010/favvo.png">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,900&display=swap" rel="stylesheet">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,8 +27,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><span>
-                    <h3>sick librarians</h3>
+            <a class="navbar-brand" href="/"><span>
+                    <h1>sick librarians</h1>
                 </span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <!-- {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -65,21 +66,72 @@
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
-  
+
 
 
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-white">
-        <p class="m-0 text-center text-white">Made by Joanna</p>
-        <p class="m-0 text-center text-white">Follow us: <i class="fab fa-facebook-square ms-3"></i>
-            <i class="fab fa-twitter-square ms-3"></i>
-            <i class="fab fa-instagram-square ms-3"></i>
-            <i class="fab fa-youtube-square ms-3"></i></p>
+    <footer class="bg-white container-fluid d-flex justify-content-around ">
+
+        <div class="d-flex justify-content-around hide-">
+            <div class="col-md-4 mr-2 d-none d-md-block">
+                <p>
+                    <h3>About us</h3>
+                </p>
+                <p>
+                    We are three librarians who usually work at city library in Gothenburg and lead the local book
+                    clubs. To restore the book reading motivation and discussion climat that suffered from covid19
+                    restrictions we moved the book circles online.
+                </p>
+            </div>
+            <div class="col-md-4n justify-content-center">
+
+                <p>
+                    <h3>Follow us</h3>
+                </p>
+                
+                <p>
+                   <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
+                    <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
+                    </a>
+                </div>
+                <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
+                    <a href="https://twitter.com/">
+                        <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
+                </div>
+                <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
+                    <a href="https://www.linkedin.com/company/">
+                        <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
+                </div>
+
+                <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
+                    <a href="https://www.google.com/">
+                        <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
+                </div> 
+                </p>
+            </div>
+
+            <div class="col-md-4 d-none d-md-block">
+                <h3>Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Kålltorpsgatan 2, 416 52 Göteborg</p>
+                <p><i class="fas fa-phone"></i> Phone: (0046) 031-365 50 70</p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:library@library.com">library@library.com</a>
+                </p>
+            </div>
+
+
+
+
+
+        </div>
+        
     </footer>
 
 
-    </div>
+
 </body>
+
+<!-- font awesome script  -->
+    <script src="https://kit.fontawesome.com/1b326a9fe3.js" crossorigin="anonymous"></script>
 
 </html>
