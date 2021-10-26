@@ -55,6 +55,17 @@ a {
   height: 600px;
 }
 
+.btn-signup {
+  background-color: #0c645c;
+  color:#dfdbc6;
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+  background-color: #dfdbc6;
+  color: #0c645c;
+}
+
   /* Collapsible */
 
   .collapse {
