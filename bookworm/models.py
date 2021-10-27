@@ -25,20 +25,17 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     name = models.CharField(max_length=80)
     body = models.TextField()
+    id = models.CharField(null=False, primary_key=1, max_length=70)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
-    reply = models.ForeignKey('Comment', null=True, blank=True, related_name="repiles", on_delete=models.CASCADE)
+    parent = models.ForeignKey('Comment', null=True, blank=True, on_delete=models.CASCADE)
     
     class Meta:
         ordering = ["created_on"]
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
-
-    def replies(self):
-        return Comment.objects.filter(reply=self)

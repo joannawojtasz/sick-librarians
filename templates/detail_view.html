@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="row">
 
     <div class="row mt-4">
@@ -44,7 +46,26 @@
     </div>
 </div>
 
+<div class="col-md-8 col-12 mt-4 mx-auto bg-white">
+    <div class="card-body">
+        {% if commented %}
+        <div class="alert alert-success" role="alert">
+            Your comment is awaiting approval
+        </div>
+        {% else %}
+        {% if user.is_authenticated %}
 
+        <h3>Leave a comment:</h3>
+        <p>Posting as: {{ user.username }}</p>
+        <form method="post" style="margin-top: 1.3em">
+            {% csrf_token %}
+            {{ comment_form | crispy }}
+             <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+        </form>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
 
 <div class="row comment">
     {% for comment in comments %}
@@ -80,7 +101,7 @@
             </div>
         </div>
         <div >
-            {% for reply in comment.replies %}
+            {% for reply in replies.filter(parent_id= {{ comment.id }} %}
             <div class="col-8 col-md-10 offset-2 mt-1">
                 <div class="card card-body ">
                     <div class="card-header">
@@ -97,9 +118,33 @@
             </div>
             {% endfor %}
         </div>
+
+        <div class=" bg-white col-8 col-md-10 offset-2 mt-1">
+            <div class="card-body">
+                {% if commented %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting approval
+                </div>
+                {% else %}
+                {% if user.is_authenticated %}
+        
+                <h3>Reply:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" style="margin-top: 1.3em;">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <input type="hidden" name="parent_id" value={{ comment.id }}>
+                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                </form>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>
+
+
 
 <script>
     var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
