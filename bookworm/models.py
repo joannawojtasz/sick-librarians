@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 STATUS = ((0, "Draft"), (1, "Published"))
 TYPE = ((0, "News"), (1, "Review"))
@@ -18,6 +19,11 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
     type = models.IntegerField(choices=TYPE, default=0)
+    score= models.IntegerField(default=0,
+        validators=[
+            MaxValueValidator(5),
+            MinValueValidator(0)
+        ])
 
     class Meta:
         ordering = ['-created_on']
@@ -33,9 +39,12 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
     parent = models.ForeignKey('Comment', null=True, blank=True, on_delete=models.CASCADE)
-    
+
+
     class Meta:
         ordering = ["created_on"]
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+

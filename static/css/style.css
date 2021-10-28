@@ -19,8 +19,8 @@ a {
 }
 
 .checked {
-    color: orange;
-  }
+    color: #f6d2a6;
+    }
 
   .bg-grey {
     background-color: rgba(23,60,55, 0.9);
@@ -29,6 +29,12 @@ a {
   h1 {
       color: #da8a66;
       opacity: 100;
+
+  }
+
+  .start-btn {
+    background-color: inherit !important;
+    border: 0 !important;
 
   }
 

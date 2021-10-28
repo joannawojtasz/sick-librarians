@@ -9,6 +9,7 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 9
+    
 
 class DetailView(View):
 
@@ -17,6 +18,7 @@ class DetailView(View):
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True, parent__isnull=True).order_by("created_on")
         replies = post.comments.filter(approved=True, parent__isnull=False).order_by("created_on")
+        score = post.score
 
         return render(
             request,
@@ -27,6 +29,7 @@ class DetailView(View):
                 "replies": replies,
                 "commented": False,
                 "comment_form": CommentForm(),
+                "score": score,
             },
         )
 
@@ -42,7 +45,7 @@ class DetailView(View):
         }
         comment_form = CommentForm(request.POST or None, initial=initial_data)
         if comment_form.is_valid():
-            obj_id = form.cleaned_data.get('object_id')
+            obj_id = comment_form.cleaned_data.get('object_id')
             comment_form.instance.email = request.user.email
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
